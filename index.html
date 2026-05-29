@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteAventuras: El Reto Tecnológico</title>
+    <style>
+        /* --- VARIABLES DE COLOR NEÓN / GAMER --- */
+        :root {
+            --bg-principal: #0a0f24;
+            --bg-tarjeta: #131c3f;
+            --neon-azul: #00f0ff;
+            --neon-morado: #7000ff;
+            --neon-verde: #39ff14;
+            --neon-rosa: #ff007f;
+            --texto: #ffffff;
+            --texto-secundario: #8a99ad;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-principal);
+            background-image: 
+                linear-gradient(rgba(16, 24, 58, 0.5) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(16, 24, 58, 0.5) 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--texto);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER ENÉRGICO --- */
+        header {
+            background: linear-gradient(180deg, #101736 0%, var(--bg-principal) 100%);
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--neon-azul);
+            box-shadow: 0px 5px 20px rgba(0, 240, 255, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--neon-azul), 0 0 20px var(--neon-azul);
+            color: #fff;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            color: var(--neon-verde);
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* --- TARJETAS INTERACTIVAS (CON GLOW) --- */
+        .card {
+            background: var(--bg-tarjeta);
+            border: 2px solid var(--neon-morado);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(112, 0, 255, 0.4);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            animation: flotar 4s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hidden { display: none !important; }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--neon-azul);
+            margin-top: 0;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        /* --- BOTONES MODERNOS Y ENTRADAS --- */
+        button {
+            background: linear-gradient(135deg, var(--neon-morado), #4a00b5);
+            color: white;
+            border: 2px solid var(--neon-azul);
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-azul), 0 0 30px var(--neon-morado);
+            background: linear-gradient(135deg, var(--neon-azul), var(--neon-morado));
+        }
+
+        input {
+            background-color: #070b1a;
+            border: 2px solid var(--neon-morado);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            width: 80%;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-rosa);
+            box-shadow: 0 0 15px var(--neon-rosa);
+        }
+
+        /* --- SELECCIÓN DE MUNDOS (GRID LLAMATIVO) --- */
+        .grid-mundos {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .btn-mundo {
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            border-radius: 15px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-hardware { border-color: var(--neon-verde); background: #162e24; }
+        .btn-hardware:hover { box-shadow: 0 0 20px var(--neon-verde); }
+
+        .btn-redes { border-color: var(--neon-azul); background: #11293a; }
+        .btn-redes:hover { box-shadow: 0 0 20px var(--neon-azul); }
+
+        .btn-ia { border-color: var(--neon-rosa); background: #2d122b; }
+        .btn-ia:hover { box-shadow: 0 0 20px var(--neon-rosa); }
+
+        /* --- JUEGOS Y RETOS --- */
+        .opciones-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .btn-opcion {
+            background: #1b264f;
+            border: 2px solid #2c3b75;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        /* --- RANKING TABLE --- */
+        table {
+            width: 100%;
+            margin-top: 1.5rem;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+
+        th {
+            color: var(--neon-azul);
+            padding: 0.75rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            background: #19234b;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        tr:nth-child(1) td { border-left: 5px solid gold; color: gold; }
+        tr:nth-child(2) td { border-left: 5px solid #c0c0c0; color: #c0c0c0; }
+        tr:nth-child(3) td { border-left: 5px solid #cd7f32; color: #cd7f32; }
+
+        /* --- FOOTER / CRÉDITOS --- */
+        footer {
+            background-color: #060917;
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 2px solid var(--neon-morado);
+            font-size: 0.9rem;
+            color: var(--texto-secundario);
+        }
+
+        footer strong {
+            color: var(--neon-rosa);
+            text-shadow: 0 0 5px rgba(255, 0, 127, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ ByteAventuras</h1>
+        <p id="info-usuario">SISTEMA: Esperando registro de piloto...</p>
+    </header>
+
+    <main>
+        <!-- 1. PORTADA Y REGISTRO -->
+        <section id="pantalla-portada" class="card">
+            <h2>🛸 ¡Bienvenidos Aventureros del Futuro!</h2>
+            <p style="color: var(--texto-secundario); line-height: 1.6;">
+                Domina la tecnología a través de diferentes mundos interactivos. Resuelve misiones sobre Hardware, Redes e Inteligencia Artificial para ganar estrellas.
+            </p>
+            
+            <div style="margin: 2.5rem 0;">
+                <input type="text" id="input-nombre" placeholder="Ingresa tu Alias de Explorador..." required>
+                <br>
+                <button onclick="registrarUsuario()">Iniciar Misión 🚀</button>
+            </div>
+            
+            <p style="font-size: 0.9rem; color: var(--neon-azul);">
+                Mundos activos: 🔧 Hardware | 🌐 Redes | 🧠 IA en el Aula
+            </p>
+        </section>
+
+        <!-- 2. SELECCIÓN DE MUNDOS -->
+        <section id="pantalla-mundos" class="card hidden">
+            <h2>🗺️ Mapa de Misiones</h2>
+            <p>Piloto: <strong id="nombre-saludo" style="color:var(--neon-verde);"></strong>. Elige tu próximo destino:</p>
+            
+            <div class="grid-mundos">
+                <button class="btn-mundo btn-hardware" onclick="irAMundo('hardware')">
+                    <span>🔧 Mundo 1: El Cerebro Digital (Hardware)</span> <span>➡️</span>
+                </button>
+                <button class="btn-mundo btn-redes" onclick="irAMundo('redes')">
+                    <span>🌐 Mundo 2: Conexión Global (Redes)</span> <span>➡️</span>
+                </button>
+                <button class="btn-mundo btn-ia" onclick="irAMundo('ia')">
+                    <span>🧠 Mundo 3: IA Emergente en el Aula</span> <span>➡️</span>
+                </button>
+            </div>
+
+            <button onclick="verRanking()" style="background: #1b264f; border-color: var(--texto-secundario); width: 100%;">
+                📊 Ver Panel de Líderes (Ranking)
+            </button>
+        </section>
+
+        <!-- 3. MUNDO 1: HARDWARE -->
+        <section id="mundo-hardware" class="card hidden">
+            <span style="font-size: 3rem;">🔧</span>
+            <h2 style="color: var(--neon-verde);">Misión Hardware: El Motor de la PC</h2>
+            <p><strong>Reto:</strong> ¿Qué componente almacena temporalmente los datos de los programas que estás usando en el momento exacto para que todo vaya rápido?</p>
+            
+            <div class="opciones-container">
+                <button class="btn-opcion" onclick="validarRespuesta('hardware', false)">Disco Mecánico (HDD)</button>
+                <button class="btn-opcion" onclick="validarRespuesta('hardware', true)">Memoria RAM</button>
+                <button class="btn-opcion" onclick="validarRespuesta('hardware', false)">Tarjeta de Video</button>
+                <button class="btn-opcion" onclick="validarRespuesta('hardware', false)">Fuente de Poder</button>
+            </div>
+            <br><br>
+            <button onclick="volverAMundos()" style="background: transparent; border: none; color: var(--texto-secundario);">⬅ Abortar Misión</button>
+        </section>
+
+        <!-- 4. MUNDO 2: REDES -->
+        <section id="mundo-redes" class="card hidden">
+            <span style="font-size: 3rem;">🌐</span>
+            <h2 style="color: var(--neon-azul);">Misión Redes: Rutas del Ciberespacio</h2>
+            <p><strong>Reto:</strong> ¿Qué dispositivo inteligente se encarga de interconectar diferentes redes y guiar los paquetes de datos por el camino más eficiente?</p>
+            
+            <div class="opciones-container">
+                <button class="btn-opcion" onclick="validarRespuesta('redes', false)">Cable Coaxial</button>
+                <button class="btn-opcion" onclick="validarRespuesta('redes', false)">Repetidor</button>
+                <button class="btn-opcion" onclick="validarRespuesta('redes', true)">Router (Enrutador)</button>
+                <button class="btn-opcion" onclick="validarRespuesta('redes', false)">Tarjeta de Red (NIC)</button>
+            </div>
+            <br><br>
+            <button onclick="volverAMundos()" style="background: transparent; border: none; color: var(--texto-secundario);">⬅ Abortar Misión</button>
+        </section>
+
+        <!-- MUNDO 3: INTELIGENCIA ARTIFICIAL -->
+        <section id="mundo-ia" class="card hidden">
+            <span style="font-size: 3rem;">🧠</span>
+            <h2 style="color: var(--neon-rosa);">Misión IA: El Aula Inteligente</h2>
+            <p><strong>Reto:</strong> ¿Cuál es el uso más ético y pedagógico de una Inteligencia Artificial Generativa por parte de un estudiante en el aula?</p>
+            
+            <div class="opciones-container">
+                <button class="btn-opcion" onclick="validarRespuesta('ia', false)">Copiar y pegar los ensayos completos</button>
+                <button class="btn-opcion" onclick="validarRespuesta('ia', false)">Dejar que la IA responda los exámenes por mí</button>
+                <button class="btn-opcion" onclick="validarRespuesta('ia', true)">Usarla como tutor para aclarar dudas y explicar conceptos</button>
+                <button class="btn-opcion" onclick="validarRespuesta('ia', false)">Generar códigos falsos para engañar al profesor</button>
+            </div>
+            <br><br>
+            <button onclick="volverAMundos()" style="background: transparent; border: none; color: var(--texto-secundario);">⬅ Abortar Misión</button>
+        </section>
+
+        <!-- 5. PANEL DE AVANCES / RANKING -->
+        <section id="pantalla-ranking" class="card hidden">
+            <h2>🏆 Cuadro de Honor Global</h2>
+            <p style="color: var(--texto-secundario);">Los mejores ingenieros y exploradores del sistema.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rango</th>
+                        <th>Explorador</th>
+                        <th>Puntuación</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-ranking-cuerpo">
+                    <!-- Dinámico -->
+                </tbody>
+            </table>
+            <br>
+            <button onclick="volverAMundos()">Regresar al Mapa</button>
+        </section>
+    </main>
+
+    <!-- --- CRÉDITOS DE LA APLICACIÓN --- -->
+    <footer>
+        <p>Desarrollado con ❤️ por: <strong>Leiner Alvarez Jmines</strong> & <strong>Edwin Jhunior Perea Barrios</strong></p>
+        <p>Programa Académico | Asignatura: Tecnología Educativa | Año 2026</p>
+    </footer>
+
+    <!-- --- SISTEMA DE LOGICA EN JAVASCRIPT --- -->
+    <script>
+        let usuarioActual = "";
+
+        // Inicializar base de datos con los nombres de los creadores en el top del ranking
+        function inicializarBaseDeDatos() {
+            let ranking = localStorage.getItem('byte_ranking_general');
+            if (!ranking) {
+                let rankingInicial = [
+                    { nombre: "Leiner Alvarez Jmines 👑", puntos: 300 },
+                    { nombre: "Edwin Jhunior Perea Barrios 👑", puntos: 300 }
+                ];
+                localStorage.setItem('byte_ranking_general', JSON.stringify(rankingInicial));
+            }
+        }
+        inicializarBaseDeDatos();
+
+        function mostrarPantalla(idPantalla) {
+            const pantallas = ['pantalla-portada', 'pantalla-mundos', 'mundo-hardware', 'mundo-redes', 'mundo-ia', 'pantalla-ranking'];
+            pantallas.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById(idPantalla).classList.remove('hidden');
+        }
+
+        function registrarUsuario() {
+            const input = document.getElementById('input-nombre');
+            if (input.value.trim() === "") {
+                alert("¡Ingresa un alias para activar tu cuenta de explorador!");
+                return;
+            }
+            usuarioActual = input.value.trim();
+            
+            if (!localStorage.getItem(usuarioActual)) {
+                let nuevoPerfil = {
+                    nombre: usuarioActual,
+                    puntos: 0,
+                    mundosCompletados: []
+                };
+                localStorage.setItem(usuarioActual, JSON.stringify(nuevoPerfil));
+            }
+
+            actualizarHeader();
+            document.getElementById('nombre-saludo').innerText = usuarioActual;
+            mostrarPantalla('pantalla-mundos');
+        }
+
+        function actualizarHeader() {
+            if(usuarioActual) {
+                let datos = JSON.parse(localStorage.getItem(usuarioActual));
+                document.getElementById('info-usuario').innerText = `⚡ PILOTO: ${datos.nombre} | ⭐ ESTRELLAS: ${datos.puntos} PTS`;
+            }
+        }
+
+        function irAMundo(mundo) {
+            mostrarPantalla(`mundo-${mundo}`);
+        }
+
+        function volverAMundos() {
+            mostrarPantalla('pantalla-mundos');
+        }
+
+        function validarRespuesta(mundo, esCorrecto) {
+            if (esCorrecto) {
+                let datos = JSON.parse(localStorage.getItem(usuarioActual));
+                
+                if (!datos.mundosCompletados.includes(mundo)) {
+                    datos.puntos += 100;
+                    datos.mundosCompletados.push(mundo);
+                    localStorage.setItem(usuarioActual, JSON.stringify(datos));
+                    
+                    actualizarRankingGlobal(datos);
+                    alert("¡SISTEMA: Misión cumplida con éxito! +100 Puntos. 🌟");
+                } else {
+                    alert("¡Misión ya superada anteriormente! Buen repaso.");
+                }
+                
+                actualizarHeader();
+                volverAMundos();
+            } else {
+                alert("❌ ERROR EN LA RESPUESTA: Escudo dañado. ¡Pídele una pista al ChatBot flotante!");
+            }
+        }
+
+        function actualizarRankingGlobal(perfilUsuario) {
+            let ranking = JSON.parse(localStorage.getItem('byte_ranking_general')) || [];
+            ranking = ranking.filter(p => p.nombre !== perfilUsuario.nombre);
+            ranking.push({nombre: perfilUsuario.nombre, puntos: perfilUsuario.puntos});
+            ranking.sort((a, b) => b.puntos - a.puntos);
+            localStorage.setItem('byte_ranking_general', JSON.stringify(ranking));
+        }
+
+        function verRanking() {
+            let ranking = JSON.parse(localStorage.getItem('byte_ranking_general')) || [];
+            let tablaCuerpo = document.getElementById('tabla-ranking-cuerpo');
+            tablaCuerpo.innerHTML = "";
+
+            ranking.forEach((jugador, index) => {
+                let fila = `<tr>
+                    <td># ${index + 1}</td>
+                    <td>${jugador.nombre}</td>
+                    <td style="color: var(--neon-verde);">${jugador.puntos} PTS</td>
+                </tr>`;
+                tablaCuerpo.innerHTML += fila;
+            });
+            mostrarPantalla('pantalla-ranking');
+        }
+    </script>
+
+    <!-- --- INTEGRACIÓN OFICIAL DEL CHATBOT DE JOTFORM --- -->
+    <script src='https://cdn.jotfor.ms/agent/embedjs/019e044493027e5e8438dd1c544981daa64f/embed.js?autoOpenChatIn=1'></script>
+
+</body>
+</html>
